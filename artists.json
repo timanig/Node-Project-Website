@@ -1,0 +1,23 @@
+[{
+    "artists":{
+        "currensy":{
+            "name":"Curren$y",
+            "age":"34",
+            "profession":"Rockstar",
+            "hobbies":"Low riding"
+        },
+        "childishgambino":{
+            "name":"Gambino",
+            "age":"32",
+            "profession":"Writer",
+            "hobbies":"Singing"
+        },
+        "wizkhalifa":{
+            "name":"Wiz",
+            "age":"33",
+            "profession":"musician",
+            "hobbies":"cooking"
+        } 
+    }
+}]
+  
