@@ -1,12 +1,13 @@
 var express = require('express');
 var app = express();
 var fs = require('fs');
+var str = require('./artists.json');
 
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 var jsonParser = bodyParser.json();
-var str = JSON.parse(fs.readFileSync('/Applications/XAMPP/xamppfiles/htdocs/home/artists.json', 'utf8'));
+//var str = JSON.parse(fs.readFileSync('/Applications/XAMPP/xamppfiles/htdocs/home/artists.json', 'utf8'));
 
 var path = require('path');
 
@@ -56,6 +57,10 @@ app.get('/wizkhalifa', function (req, res){
     res.render('wizkhalifa', {str:str});
 });
 
+app.get('/guestbook', function (req, res){
+  res.render('guestbook', {str:str});
+});
+
   app.post('/contactus', urlencodedParser, function (req, res) {
     res.send('Thanks for your concerns');
     console.log(req.body.name);
@@ -72,7 +77,9 @@ app.get('/wizkhalifa', function (req, res){
 
   connection.query("INSERT INTO nodeProject.contactDB (name, email, concerns) VALUES ('"+req.body.name+"','"+req.body.email+"','"+req.body.concerns+"');", 
   function(error, results, fields) {
-    if (error) {
+    if (error|| req.body.name === "" || !req.body.email === "" ||!req.body.concerns === "") {
+      res.status(422)
+      res.send('ERROR 422');
       console.error('An error occurred while executing the query');
       throw error
     } else{
