@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: false});
 
 var jsonParser = bodyParser.json();
-//var str = JSON.parse(fs.readFileSync('/Applications/XAMPP/xamppfiles/htdocs/home/artists.json', 'utf8'));
 
 var path = require('path');
 
