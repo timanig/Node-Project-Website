@@ -33,8 +33,16 @@ app.get('/', function (req, res){
     res.render('index');
 });
 
+app.get('/api', function (req, res){
+  res.render('api');
+});
+
 app.get('/aboutme', function (req, res){
     res.render('aboutme');
+});
+
+app.get('/api/aboutme', function (req, res){
+  res.render('api/aboutme');
 });
 
 app.get('/musictoo', function (req, res){
