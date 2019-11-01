@@ -26,6 +26,8 @@ var upload = multer({ storage : storage}).single('userPhoto');
 
 const mysql = require('mysql');
 
+const paypal = require('paypal-rest-sdk');
+
 const options = {
     user: 'root',
     password: '',
@@ -80,8 +82,8 @@ app.get('/guestbook', function (req, res){
   res.render('guestbook', {str:str});
 });
 
-app.get('/contactus',function(req,res){
-  res.sendFile(__dirname + "contactus.ejs");
+app.get('/',function(req,res){
+  res.sendFile(__dirname + "/contactus");
 });
 
   app.post('/contactus', urlencodedParser, function (req, res) {
