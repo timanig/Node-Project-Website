@@ -27,6 +27,12 @@ var upload = multer({ storage : storage}).single('userPhoto');
 const mysql = require('mysql');
 
 const paypal = require('paypal-rest-sdk');
+paypal.configure({
+  'mode': 'sandbox', //sandbox or live
+  'client_id': 'ARn0Pb30h6VjpYzOYJhkGD7EqSl9soeg9A7yPdXOUUTGVqJQbW6ZcH6QgWppQX6eW0VIjcENz8_nZ9L1',
+  'client_secret': 'ECaVv60DmFl9lDAPxe3RXPkE_7M5CmPC5DOn3Es79gDqL50k8snEmDem2KxfMO_4EZozFYPKWZzCPjxl'
+});
+
 
 const options = {
     user: 'root',
@@ -86,6 +92,33 @@ app.get('/',function(req,res){
   res.sendFile(__dirname + "/contactus");
 });
 
+app.get('/cancel', () => res.send('Cancelled'));
+
+app.get('/success', (req,res) => {
+  const payerId = req.query.PayerID;
+  const paymentId = req.query.paymentId;
+
+  var execute_payment_json = {
+    "payer_id": payerId,
+    "transactions": [{
+        "amount": {
+            "currency":"USD",
+            "total":"100.00"
+        }
+    }]
+  };
+
+  paypal.payment.execute(paymentId, execute_payment_json, function(error,payment){
+    if(error){
+      console.log(error.response);
+      throw error;
+    } else{
+      console.log(JSON.stringify(payment));
+      res.send('Thanks for your purchase. Enjoy!');
+    }
+  });
+});
+
   app.post('/contactus', urlencodedParser, function (req, res) {
     res.send('Thanks for your concerns');
     console.log(req.body.name);
@@ -122,4 +155,45 @@ app.post('/api/photo',function(req,res){
       res.end("File is uploaded");
   });
 });
+
+app.post('/pay', (req, res) => {
+  const create_payment_json = {
+    "intent": "sale",
+    "payer": {
+        "payment_method": "paypal"
+    },
+    "redirect_urls": {
+        "return_url": "http://localhost:3000/success",
+        "cancel_url": "http://localhost:3000/cancel"
+    },
+    "transactions": [{
+        "item_list": {
+            "items": [{
+                "name": "Instrumental",
+                "sku": "001",
+                "price": "100.00",
+                "currency": "USD",
+                "quantity": 1
+            }]
+        },
+        "amount": {
+            "currency": "USD",
+            "total": "100.00"
+        },
+        "description": "This is hardest beat you will ever hear in life."
+    }]
+};
+  paypal.payment.create(create_payment_json, function (error, payment) {
+    if (error) {
+        throw error;
+    } else {
+        for(let i = 0;i< payment.links.length;i++){
+          if(payment.links[i].rel === 'approval_url'){
+            res.redirect(payment.links[i].href);
+          }
+        }
+    }
+  });
+});
+
 app.listen(port);
