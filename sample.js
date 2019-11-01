@@ -1,4 +1,5 @@
 var express = require('express');
+var multer  = require('multer');
 var app = express();
 var fs = require('fs');
 var str = require('./artists.json');
@@ -11,6 +12,17 @@ var jsonParser = bodyParser.json();
 var path = require('path');
 
 var port = process.env.PORT || 3000;
+
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '-' + Date.now());
+  }
+});
+
+var upload = multer({ storage : storage}).single('userPhoto');
 
 const mysql = require('mysql');
 
@@ -68,6 +80,10 @@ app.get('/guestbook', function (req, res){
   res.render('guestbook', {str:str});
 });
 
+app.get('/contactus',function(req,res){
+  res.sendFile(__dirname + "contactus.ejs");
+});
+
   app.post('/contactus', urlencodedParser, function (req, res) {
     res.send('Thanks for your concerns');
     console.log(req.body.name);
@@ -94,5 +110,14 @@ app.get('/guestbook', function (req, res){
     }
   });
 
+});
+
+app.post('/api/photo',function(req,res){
+  upload(req,res,function(err) {
+      if(err) {
+          return res.end("Error uploading file.");
+      }
+      res.end("File is uploaded");
+  });
 });
 app.listen(port);

@@ -1,28 +1,31 @@
 <html>
     <head><title>Wiz Khalifa</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-                   <!--    styles   -->
+        <!--    styles   -->
     <style>
         body {
-            background-image: url("https://wallpapercave.com/wp/wp2951352.jpg");
+            background-image: url("https://i1.wp.com/thevoiceofblackcincinnati.com/wp-content/uploads/2019/04/Wiz-Khalifa-Cincinnati-concert.jpg?fit=1200%2C681&ssl=1");
                 background-repeat:no-repeat;
-               background-size:cover;
+                background-size:cover;
+                color: antiquewhite;
         }
-        .footer {
-                  position: fixed;
-                  left: 0;
-                  bottom: 0;
-                  width: 100%;
-                  background-color: rgb(0, 183, 255);
-                  color: gainsboro;
-                  text-align: center;
-                }     
+        h1 {
+            color: antiquewhite;
+            text-align: center;
+        } h6 {
+            color: crimson;
+            text-align: center;
+        }.footer{
+            background: crimson ;
+            color:white;
+        }    
         </style>
     </head>
     <body>
             <%- include('nav'); -%>
 
         <h1>Wiz Khalifa</h1>
+        <h2>Bio</h2>
         <ul>
         <% str.forEach(function(i){ %>
             <li><h3>Name:</h3><%= i.artists.wizkhalifa.name%></li>
@@ -31,15 +34,40 @@
             <li><h3>Hobbies:</h3><%= i.artists.wizkhalifa.hobbies%></li>
         <%});%>
         </ul>
+
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mattis rhoncus urna neque viverra. Parturient montes nascetur ridiculus mus. At augue eget arcu dictum. In nibh mauris cursus mattis molestie a iaculis. A arcu cursus vitae congue mauris rhoncus aenean vel. Velit dignissim sodales ut eu sem. Urna porttitor rhoncus dolor purus non enim praesent elementum facilisis. Nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Nisi est sit amet facilisis. Pharetra magna ac placerat vestibulum lectus. At consectetur lorem donec massa sapien faucibus et. Vulputate sapien nec sagittis aliquam malesuada bibendum. Volutpat odio facilisis mauris sit. Parturient montes nascetur ridiculus mus mauris. Sed id semper risus in hendrerit gravida rutrum quisque non. 
         Orci sagittis eu volutpat odio facilisis mauris sit.</p>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         
-        
-        <div class="footer">
-            <p align="left">Footer</p>
-          </div>
+       <!-- paypal button
+       <h6><b>Buy Music!</b></h6>
+       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" align="center">
+           <input type="hidden" name="cmd" value="_s-xclick">
+           <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+           <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+           <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+           </form> -->
+           
+               
+           
+       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+       <div class="footer">
+       <!-- footer -->
+       <div class="mt-2 pt-2 pb-2 footer">
+               <div class="container">
+                 <div class="row">
+                   <div class="col-lg-5 col-xs-5 about-company">
+                     <h2>About Us  </h2>
+                     <p class="pr-5 text-white-50">I am a heavy collaborator looking to bring value to my team.</p>
+           
+                   </div>
+                 </div>
+               </div>
+               </div>   
+         </div>
     </body>
 </html>

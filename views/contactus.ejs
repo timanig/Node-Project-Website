@@ -4,9 +4,10 @@
                     <!--    styles   -->
     <style>
         body {
-            background-image: url("https://wallpapercave.com/wp/wp2951352.jpg");
+            background-image: url("https://hpeb.i.lithium.com/t5/image/serverpage/image-id/71657iB125FB70C41E0E4D/image-size/large?v=1.0&px=2000");
                 background-repeat:no-repeat;
                background-size:cover;
+               color: antiquewhite;
         }
         .footer {
                   position: fixed;
@@ -16,7 +17,34 @@
                   background-color: rgb(0, 183, 255);
                   color: gainsboro;
                   text-align: center;
-                }     
+                }
+        h1 {
+            
+            text-align: center;
+        } .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        }
+
+        .btn {
+        border: 2px solid gray;
+        color: gray;
+        background-color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: bold;
+        }
+
+        .upload-btn-wrapper input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        }
+              
         </style>
     </head>
     <body>
@@ -37,15 +65,33 @@
             <br>
             <input type="Submit" value="Submit your concerns "/>
         </form>
+        <!-- upload button -->
+        <!-- limit to img upload to folder on harddrive -->
+        <form id        =  "uploadForm"
+              enctype   =  "multipart/form-data"
+              action    =  "/api/photo"
+              method    =  "post">
+        <input type="file" name="userPhoto" />
+        <input type="submit" value="Upload Image" name="submit">
+        </form>
 
 
 
     
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<div class="footer">
-    <p align="left">Footer</p>
-  </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- footer -->
+        <div class="mt-2 pt-2 pb-2 footer">
+                <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-xs-5 about-company">
+                    <h2>About Us  </h2>
+                    <p class="pr-5 text-white-50">I am a heavy collaborator looking to bring value to my team.</p>
+            
+                    </div>
+                </div>
+                </div>
+                </div> 
 </body>
 </html>
