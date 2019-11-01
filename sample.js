@@ -14,15 +14,17 @@ var path = require('path');
 var port = process.env.PORT || 3000;
 
 var storage =   multer.diskStorage({
-  destination: function (req, file, callback) {
-    callback(null, './uploads');
-  },
-  filename: function (req, file, callback) {
-    callback(null, file.fieldname + '-' + Date.now());
-  }
+    destination: './public/uploads',
+    filename: function(req,file,cb){
+      cb(null,file.fieldname + '-' +Date.now() +
+      path.extname(file.originalname));
+    }
 });
 
-var upload = multer({ storage : storage}).single('userPhoto');
+const upload = multer({ 
+  storage : storage,
+  limits:{fileSize:1000000000}
+}).single('myImage');
 
 const mysql = require('mysql');
 
@@ -147,7 +149,7 @@ app.get('/success', (req,res) => {
 
 });
 
-app.post('/api/photo',function(req,res){
+app.post('/upload',function(req,res){
   upload(req,res,function(err) {
       if(err) {
           return res.end("Error uploading file.");

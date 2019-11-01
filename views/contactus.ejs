@@ -71,18 +71,36 @@
         </form>
         <!-- upload button -->
         <!-- limit to img upload to folder on harddrive -->
-        <form id        =  "uploadForm"
+        <!-- <form id        =  "uploadForm"
               enctype   =  "multipart/form-data"
               action    =  "/api/photo"
               method    =  "post">
         <input type="file" name="userPhoto" />
         <input type="submit" value="Upload Image" name="submit">
-        </form>
+        </form> -->
 
-
+        <div class="container">
+            <%= typeof msg != 'undefined' ? msg : '' %>
+                <form action="/upload" method="POST" enctype="multipart/form-data">
+                        <div class="file-field input-field">
+                          <div class="btn grey">
+                            <span>File</span>
+                            <input name="myImage" type="file">
+                          </div>
+                          <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                          </div>
+                        </div>
+                        <button type="submit" class="btn">Submit</button>
+                      </form>
+        </div>
 
         <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
